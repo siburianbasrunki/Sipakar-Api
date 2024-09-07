@@ -1,6 +1,6 @@
 # Sistem Pantau Karyawan (SIPAKAR) API Documentation
 
-Sistem Pantau Karyawan (SIPAKAR) adalah aplikasi untuk memantau karyawan dalam suatu organisasi. API ini menyediakan beberapa endpoint untuk mengelola data karyawan dan absensi. Pengguna harus melakukan otentikasi dengan menggunakan token JWT untuk mengakses endpoint tertentu.
+Sistem Pantau Karyawan (SIPAKAR) adalah aplikasi untuk memantau karyawan dalam suatu organisasi. API ini menyediakan beberapa endpoint untuk mengelola data karyawan, absensi, dan manajemen peran. Pengguna harus melakukan otentikasi dengan menggunakan token JWT untuk mengakses endpoint tertentu.
 
 ## Prasyarat
 
@@ -13,9 +13,15 @@ Sistem Pantau Karyawan (SIPAKAR) adalah aplikasi untuk memantau karyawan dalam s
 
 1. Clone repositori ini:
 
+   -API
    ```bash
-   git clone https://github.com/username/sipakar-api.git
+   git clone https://github.com/siburianbasrunki/sipakar-api.git
    ```
+   -Front-End
+
+```bash
+ https://github.com/siburianbasrunki/Sipakar.git
+```
 
 2. Masuk ke direktori proyek:
 
