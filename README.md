@@ -6,6 +6,83 @@ Sistem Pantau Karyawan (SIPAKAR) adalah aplikasi untuk memantau karyawan dalam s
 
 1. **Node.js** dan **npm** diinstal di lokal.
 2. **Database MySQL** dengan skema yang sesuai.
+# Database Schema
+
+## Table: `attendance`
+This table stores attendance records for users.
+
+| Column     | Type          | Null | Key | Default           | Description |
+|------------|---------------|------|-----|-------------------|-------------|
+| `id`       | int(11)       | NO   | PRI |                   | Primary key |
+| `user_id`  | int(11)       | NO   | MUL |                   | Foreign key referencing `users` table |
+| `date`     | date          | NO   |     |                   | Date of attendance |
+| `time_in`  | time          | YES  |     | NULL              | Time of clock-in |
+| `photo_in` | varchar(255)  | YES  |     | NULL              | Path to photo taken at clock-in |
+| `created_at`| timestamp    | NO   |     | current_timestamp() | Record creation timestamp |
+
+### Indexes for `attendance`
+- `PRIMARY KEY (id)`
+- `KEY user_id (user_id)`
+
+### Constraints for `attendance`
+- `FOREIGN KEY (user_id)` references `users(id)`
+
+---
+
+## Table: `employees`
+This table stores employee information related to users.
+
+| Column    | Type         | Null | Key | Default | Description |
+|-----------|--------------|------|-----|---------|-------------|
+| `id`      | int(11)      | NO   | PRI |         | Primary key |
+| `user_id` | int(11)      | YES  | MUL | NULL    | Foreign key referencing `users` table |
+| `division`| varchar(100) | NO   |     |         | Division name |
+
+### Indexes for `employees`
+- `PRIMARY KEY (id)`
+- `KEY user_id (user_id)`
+
+### Constraints for `employees`
+- `FOREIGN KEY (user_id)` references `users(id)` on delete CASCADE
+
+---
+
+## Table: `roles`
+This table stores the roles available in the system.
+
+| Column      | Type          | Null | Key | Default | Description |
+|-------------|---------------|------|-----|---------|-------------|
+| `id`        | int(11)       | NO   | PRI |         | Primary key |
+| `role_name` | varchar(100)  | NO   |     |         | Role name (e.g., 'Admin', 'User') |
+
+### Indexes for `roles`
+- `PRIMARY KEY (id)`
+
+---
+
+## Table: `users`
+This table stores user information and links to their respective roles.
+
+| Column      | Type          | Null | Key | Default           | Description |
+|-------------|---------------|------|-----|-------------------|-------------|
+| `id`        | int(11)       | NO   | PRI |                   | Primary key |
+| `name`      | varchar(255)  | NO   |     |                   | User's full name |
+| `email`     | varchar(255)  | NO   | UNI |                   | User's email address (unique) |
+| `password`  | varchar(255)  | NO   |     |                   | Encrypted password |
+| `role_id`   | int(11)       | YES  | MUL | 2                 | Foreign key referencing `roles(id)` (default role is 'User') |
+| `created_at`| timestamp     | NO   |     | current_timestamp() | Record creation timestamp |
+| `updated_at`| timestamp     | NO   |     | current_timestamp() on update current_timestamp() | Record update timestamp |
+
+### Indexes for `users`
+- `PRIMARY KEY (id)`
+- `UNIQUE KEY email (email)`
+- `KEY role_id (role_id)`
+
+### Constraints for `users`
+- `FOREIGN KEY (role_id)` references `roles(id)` on delete SET NULL on update CASCADE
+
+---
+
 3. **Environment Variables**:
    - `JWT_SECRET`:
 
