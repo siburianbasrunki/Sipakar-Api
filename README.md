@@ -4,7 +4,7 @@ Sistem Pantau Karyawan (SIPAKAR) adalah aplikasi untuk memantau karyawan dalam s
 
 ## Prasyarat
 
-1. **Node.js** dan **npm** diinstal di mesin lokal.
+1. **Node.js** dan **npm** diinstal di lokal.
 2. **Database MySQL** dengan skema yang sesuai.
 3. **Environment Variables**:
    - `JWT_SECRET`:
